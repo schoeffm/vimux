@@ -1,0 +1,133 @@
+syntax enable             " enable syntax highlighting (previously syntax on).
+
+set number			      " always use line-numbers
+set ch=2			      " make the command line two lines high
+set t_Co=256              " enable 256-color mode.
+set mousehide			  " hide the mouse when typing
+set tabstop=4             " tab spacing
+set autoindent            " auto-indent
+set smarttab              " use tabs at the start of a line, spaces elsewhere
+set softtabstop=4         " unify
+set shiftwidth=4          " indent/outdent by 4 columns
+set shiftround            " always indent/outdent to the nearest tabstop
+set expandtab             " use spaces instead of tabs
+set nohlsearch            " Don't continue to highlight searched phrases.
+set incsearch             " But do highlight as you type your search.
+set ignorecase            " Make searches case-insensitive.
+set ruler                 " Always show info along bottom.
+set laststatus=2          " last window always has a statusline
+filetype indent on        " activates indenting for files
+set nocompatible          " get rid of Vi compatibility mode. SET FIRST!
+set encoding=utf-8
+
+
+
+" redefine the <Leader> mapping (defaults to \ - which is hard to reach on
+" german keyboards) to sth. more suitable
+let mapleader = ","
+" trigger Vimux-Commands more easily (make sure you've got Vimux installed)
+map <Leader>vp :VimuxPromptCommand<CR>
+map <Leader>vl :VimuxRunLastCommand<CR>
+map <Leader>vi :VimuxInspectRunner<CR>
+let g:VimuxOrientation = "h"
+let g:VimuxHeight = "35"
+
+
+
+" mappings for NERDTree
+nnoremap <silent> <F9> :NERDTreeToggle<CR>
+map <Leader>1 :NERDTreeToggle<CR>
+
+
+
+" set a bunch of file-type specific settings (tabs etc.)
+if has("autocmd")
+    " Enable file type detection
+    filetype on
+
+    " Syntax of these languages is fussy over tabs Vs spaces
+    autocmd FileType make setlocal ts=8 sts=8 sw=8 noexpandtab
+    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+    " Customisations based on house-style (arbitrary)
+    autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab 
+
+    " Treat .rss files as XML
+    autocmd BufNewFile,BufRead *.rss,*.xml setfiletype xml
+endif
+
+
+
+" Vertical line on Column 120 -- START
+:set colorcolumn=120        " highlight column after 'textwidth'
+:highlight ColorColumn ctermbg=233
+" Vertical line on Column 120 -- END
+
+
+
+if version >= 500
+  set hlsearch
+endif
+
+
+" First, install Vundle if not already present
+" Next, define a bunch of plugins to be installed (use :VundleInstall)
+" Vundle -- START
+filetype off
+let iCanHazVundle=1
+let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+if !filereadable(vundle_readme)
+    echo "Installing Vundle.."
+    echo ""
+    silent !mkdir -p ~/.vim/bundle
+    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+    let iCanHazVundle=0
+endif
+set rtp+=~/.vim/bundle/vundle/    " set the runtime path to include Vundle and initialize
+call vundle#rc()
+
+" Plugin 'scrooloose/syntastic'
+" Plugin 'ervandew/supertab'
+Plugin 'scrooloose/nerdtree'                    " a nice browser
+" Plugin 'tpope/vim-surround'
+Plugin 'arcticicestudio/nord-vim'
+Plugin 'itchyny/lightline.vim'
+" Plugin 'mattn/emmet-vim'
+Plugin 'christoomey/vim-tmux-navigator'         " allow for easy pane-navigation with tmux
+Plugin 'benmills/vimux'                         " run commands in tmux panes from vim
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+if iCanHazVundle == 0
+  echo "Installing Bundles, please ignore key map error messages"
+  echo ""
+  :PluginInstall
+endif
+" END - Setting up Vundle - the vim plugin bundler
+
+
+
+" configure the nord-theme
+let g:lightline = {
+      \ 'colorscheme': 'nord',
+      \ 'component': {
+      \   'readonly': '%{&readonly?"":""}',
+      \ },
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' }
+      \ }
+colorscheme nord
+
+
+
+" navigate between panes more naturally
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+
+
+
+filetype plugin indent on

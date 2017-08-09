@@ -1,0 +1,15 @@
+setopt correct_all
+
+alias cap='nocorrect cap'
+alias man='nocorrect man'
+alias tree='nocorrect tree'
+alias thor='nocorrect thor'
+alias mv='nocorrect mv'
+alias mysql='nocorrect mysql'
+alias mkdir='nocorrect mkdir'
+alias ack='nocorrect ack'
+alias subl='nocorrect subl'
+alias node='nocorrect node'
+alias gvm='nocorrect gvm'
+alias groovy='nocorrect groovy'
+alias git='nocorrect git'

@@ -1,0 +1,21 @@
+export ZSH=~/.zsh
+
+bindkey '^R' history-incremental-search-backward
+bindkey '^S' history-incremental-search-forward
+
+setopt EXTENDED_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_FIND_NO_DUPS        # we will skip duplications if there are any
+setopt HIST_REDUCE_BLANKS       # trim everything on the history stack
+setopt INC_APPEND_HISTORY       # store every single key-stroke (not only when we hit enter)
+setopt SHARE_HISTORY            # share one history between several zsh-sessions
+
+setopt NO_BEEP                  # well, stop beeping all the time
+setopt NO_FLOW_CONTROL          # needs to be deactivated in order to make forward-search possible
+
+# Load all of the config files in ~/oh-my-zsh that end in .zsh
+for config_file ($ZSH/*.zsh) source $config_file
+
+# Load and run compinit
+autoload -U compinit
+compinit -i
