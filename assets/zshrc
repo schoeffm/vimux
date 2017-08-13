@@ -19,3 +19,7 @@ for config_file ($ZSH/*.zsh) source $config_file
 # Load and run compinit
 autoload -U compinit
 compinit -i
+
+#powerline if [[ -r /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh ]]; then
+#powerline     source /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh
+#powerline fi

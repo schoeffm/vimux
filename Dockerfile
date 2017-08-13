@@ -17,6 +17,7 @@ RUN apt-get update && \
 USER vimux
 
 # add a bunch of settings so all tools work as expected
+RUN git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 COPY ./assets/vimrc /home/vimux/.vimrc
 COPY ./assets/tmux.conf /home/vimux/.tmux.conf
 COPY ./assets/zshrc /home/vimux/.zshrc

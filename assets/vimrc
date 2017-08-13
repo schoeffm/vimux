@@ -88,13 +88,13 @@ endif
 set rtp+=~/.vim/bundle/vundle/    " set the runtime path to include Vundle and initialize
 call vundle#rc()
 
-" Plugin 'scrooloose/syntastic'
-" Plugin 'ervandew/supertab'
+Plugin 'scrooloose/syntastic'
+Plugin 'ervandew/supertab'
 Plugin 'scrooloose/nerdtree'                    " a nice browser
-" Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-surround'
 Plugin 'arcticicestudio/nord-vim'
 Plugin 'itchyny/lightline.vim'
-" Plugin 'mattn/emmet-vim'
+Plugin 'mattn/emmet-vim'
 Plugin 'christoomey/vim-tmux-navigator'         " allow for easy pane-navigation with tmux
 Plugin 'benmills/vimux'                         " run commands in tmux panes from vim
 

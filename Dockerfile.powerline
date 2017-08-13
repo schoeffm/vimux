@@ -1,0 +1,16 @@
+FROM schoeffm/vimux
+MAINTAINER Stefan Schoeffmann, <stefan.schoeffmann@posteo.de>
+
+USER root
+
+# install a bunch of tools (especially vim && tmux)
+RUN apt-get update && \
+    apt-get install -y python-pip && \
+    pip install git+git://github.com/Lokaltog/powerline
+
+USER vimux
+
+RUN sed -i 's/#powerline.//g' ~/.zshrc && \
+    sed -i 's/#powerline.//g' ~/.tmux.conf
+
+ENTRYPOINT [ "/bin/zsh" ] 
