@@ -2,6 +2,13 @@
 
 set +x
 
+function stopExisting() {
+    ID=$(docker ps -a | awk '/vimux/ {print $1}')
+    if [ -n "$ID" ];then
+        docker rm "$ID"
+    fi
+}
+
 function vimux() {
     docker run --name vimux -ti -v $HOME:/data schoeffm/vimux
 }
@@ -17,10 +24,11 @@ function withDocker() {
 echo "Select one of the follin' versions: "
 select cmd in vimux powerline withDocker
 do
-    if [ -n $cmd ]
+    if [ -n "$cmd" ]
     then
-    eval $cmd 
-    break
+        stopExisting
+        eval $cmd 
+        break
     else
         echo "Invalid choice"
     fi

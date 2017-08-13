@@ -10,7 +10,7 @@ RUN apt-get update && \
     gpasswd -a vimux docker && \
     curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose && \
     chmod +x /usr/local/bin/docker-compose && \
-    echo "alias d='sudo docker'" > /home/vimux/.zsh/aliases.zsh && \
-    echo "alias dc='sudo docker-compose'" > /home/vimux/.zsh/aliases.zsh
+    echo "alias d='sudo docker'" >> /home/vimux/.zsh/aliases.zsh && \
+    echo "alias dc='sudo docker-compose'" >> /home/vimux/.zsh/aliases.zsh
 
 USER vimux

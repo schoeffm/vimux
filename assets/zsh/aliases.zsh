@@ -19,7 +19,7 @@ alias tree='tree -latr'
 alias mkcd=mkdircd
 alias fuck='sudo $(fc -ln -1)'
 alias diff='idea diff'              # use intellij's diff tool
-
+alias '#'=':'
 
 ###########################################
 ##            glocal aliases             ##
